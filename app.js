@@ -36,4 +36,5 @@ app.post('/push', async function (req, res) {
 
 
 const server = app.listen(process.env.PORT)
+console.log("API listen on port %d", process.env.PORT)
 module.exports = server
