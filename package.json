@@ -1,5 +1,8 @@
 {
   "name": "node-poc",
+  "engines" : { 
+    "node" : ">=12.16.2" 
+  },
   "version": "1.0.0",
   "description": "",
   "main": "app.js",

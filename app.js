@@ -26,7 +26,8 @@ app.post('/push', async function (req, res) {
         // run Ansible script
         console.log('start deployment...')
         const cmdResult = await exec(`ansible-playbook ${process.env.ANSIBLE_PLAYBOOK} \
---extra-vars "@${process.env.ANSIBLE_EXTRA_VARS_FILE}"`)
+--extra-vars "@${process.env.ANSIBLE_EXTRA_VARS_FILE}" \
+--vault-id prod@${process.env.ANSIBLE_PWD_FILE}`)
         console.log('Result: ', cmdResult)
      } catch (e) {
          console.log('Error: ', e)
