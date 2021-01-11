@@ -19,22 +19,21 @@ function verifySignature (req, res, next){
 }
 
 app.post('/push', async function (req, res) {
-    console.log("body: %o", req.body)
-//     try {
-//         if (req.body.ref !== 'refs/heads/master') {
-//            throw Error("not master branch")
-//         }
-//         // run Ansible script
-//         console.log('start deployment...')
-//         const cmdResult = await exec(`ansible-playbook ${process.env.ANSIBLE_PLAYBOOK} \
-// --extra-vars "@${process.env.ANSIBLE_EXTRA_VARS_FILE}" \
-// --extra-vars "{\\"deploy_just_static_content\\": true}" \
-// --vault-id prod@${process.env.ANSIBLE_PWD_FILE}`)
-//         console.log('Result: ', cmdResult)
-//      } catch (e) {
-//          console.log('Error: ', e)
-//      }
-//      res.status(200).send({ received: true })
+    try {
+        if (req.body.ref !== 'refs/heads/master') {
+           throw Error("not master branch")
+        }
+        // run Ansible script
+        console.log('start deployment...')
+        const cmdResult = await exec(`ansible-playbook ${process.env.ANSIBLE_PLAYBOOK} \
+--extra-vars "@${process.env.ANSIBLE_EXTRA_VARS_FILE}" \
+--extra-vars "{\\"deploy_just_static_content\\": true}" \
+--vault-id prod@${process.env.ANSIBLE_PWD_FILE}`)
+        console.log('Result: ', cmdResult)
+     } catch (e) {
+         console.log('Error: ', e)
+     }
+      res.status(200).send({ received: true })
 })
 
 
